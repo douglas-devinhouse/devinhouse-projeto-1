@@ -15,5 +15,13 @@ function adcionarTarefa(){
     }
 }
 
+function deletarTarefa(indice) {
+    LISTA_TAREFAS.splice(
+        //Praticando arrow function: encontre o item => se o id dele for igual ao parâmetro
+        LISTA_TAREFAS.findIndex((item) => item.id == indice),1);
+        
+        console.log(LISTA_TAREFAS);
+}
+
 // pretendo incluir uma escuta para incluir na lista ao pressionar enter tbm (pesquisar como fazer isso)
 document.querySelector("#btn-adicionar").addEventListener("click", adcionarTarefa);

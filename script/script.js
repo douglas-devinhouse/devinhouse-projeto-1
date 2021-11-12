@@ -13,6 +13,8 @@ function adcionarTarefa(){
       
       LISTA_TAREFAS.push(objetoTarefa);
       console.log(LISTA_TAREFAS);
+
+      document.querySelector("#inputTarefa").value = "";
     }
 }
 
@@ -31,5 +33,9 @@ function alterarStatusTarefa(idTarefa) {
     console.log(LISTA_TAREFAS);
   }
 
-// pretendo incluir uma escuta para incluir na lista ao pressionar enter tbm (pesquisar como fazer isso)
 document.querySelector("#btn-adicionar").addEventListener("click", adcionarTarefa);
+document.querySelector("#inputTarefa").addEventListener("keydown", function(e) {
+    if (e.keyCode == 13) {
+      adcionarTarefa();
+    }
+  });

@@ -24,12 +24,9 @@ function excluirTarefa(idTarefa) {
     console.log(LISTA_TAREFAS);
 }
 
-function concluirTarefa(idTarefa) {
-    let indiceConcluir = LISTA_TAREFAS.findIndex((item) => item.id == idTarefa);
-  
-    LISTA_TAREFAS[indiceConcluir].concluido
-        ? (LISTA_TAREFAS[indiceConcluir].concluido = false)
-        : (LISTA_TAREFAS[indiceConcluir].concluido = true);
+function alterarStatusTarefa(idTarefa) {
+    let indiceAlterarStatus = LISTA_TAREFAS.findIndex((item) => item.id == idTarefa);    
+    LISTA_TAREFAS[indiceAlterarStatus].concluido = !(LISTA_TAREFAS[indiceAlterarStatus].concluido);    
     
     console.log(LISTA_TAREFAS);
   }

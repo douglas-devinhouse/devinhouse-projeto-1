@@ -12,6 +12,18 @@ function adcionarTarefa(){
       };
       
       LISTA_TAREFAS.push(objetoTarefa);
+
+      //Adicionar o objetoTarefa na DOM
+      const NOVO_ELEMENTO_LI = document.createElement("li");
+      //Criar uma propriedade "id" para cada novo item da lista (será o index da LISTA_TAREFAS)
+      NOVO_ELEMENTO_LI.id = `item-${objetoTarefa.id}`;
+      //Adicionar os elementos html na DOM
+      NOVO_ELEMENTO_LI.innerHTML = `<input type="checkbox" name="chk-${objetoTarefa.id}" onclick="marcaFeito(${objetoTarefa.id})">
+                                    <label for="chk-${objetoTarefa.id}">${objetoTarefa.textoTarefa}</label>
+                                    <button onclick="removeItem(${objetoTarefa.id})">&times;</button>`;
+      let elementoUl = document.querySelector('#lista-tarefas');
+      elementoUl.appendChild(NOVO_ELEMENTO_LI);
+
       console.log(LISTA_TAREFAS);
 
       document.querySelector("#inputTarefa").value = "";

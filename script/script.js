@@ -36,14 +36,16 @@ function adcionarTarefa(){
 }
 
 function excluirTarefa(idTarefa) {
-  //Praticando arrow function: encontre o item => se o id dele for igual ao parâmetro
-  let indiceExcluir = LISTA_TAREFAS.findIndex((item) => item.id == idTarefa);
-  LISTA_TAREFAS.splice(indiceExcluir,1);
+  if(window.confirm("Deseja realmente EXCLUIR esta tarefa da lista?")){
+    //Praticando arrow function: encontre o item => se o id dele for igual ao parâmetro
+    let indiceExcluir = LISTA_TAREFAS.findIndex((item) => item.id == idTarefa);
+    LISTA_TAREFAS.splice(indiceExcluir,1);
 
-  let elementoExcluir = document.querySelector(`#item-${idTarefa}`);
-  ELEMENTO_Ul.removeChild(elementoExcluir);
-      
-  gravarStorage();    
+    let elementoExcluir = document.querySelector(`#item-${idTarefa}`);
+    ELEMENTO_Ul.removeChild(elementoExcluir);
+        
+    gravarStorage();    
+  }  
 }
 
 function alterarStatusTarefa(idTarefa) {

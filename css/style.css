@@ -3,32 +3,3 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-  body {        
-    background-color: #6e6a6a;
-
-    height: 80vh;
-    width: 100%;
-    place-items: center;
-    font-family: 'Source Sans Pro', sans-serif;
-  }
-
-
-/*
-header {
-  text-align: center;
-
-background-image: linear-gradient(to bottom, #232526, #414345);
-background-repeat: no-repeat;
-
-color: #fff;
-}
-
-footer { 
-  position: fixed;
-  display: block;
-  bottom: 50px;
-  text-align: center;
-  background-color: #232526;  
-  width: 100%;  
-} */

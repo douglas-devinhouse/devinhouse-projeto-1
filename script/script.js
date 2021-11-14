@@ -30,10 +30,10 @@ function adcionarTarefa(){
     //Criar uma propriedade "id" para cada novo item da lista (será o index da LISTA_TAREFAS)
     NOVO_ELEMENTO_LI.id = `item-${objetoTarefa.id}`;
     //Adicionar os elementos html na DOM
-    NOVO_ELEMENTO_LI.innerHTML = `<input type="checkbox" name="chk-${objetoTarefa.id}" id="chk-${objetoTarefa.id}" 
-                                         onclick="alterarStatusTarefa(${objetoTarefa.id})"
-                                         class="nao-concluida">
-                                  <label for="chk-${objetoTarefa.id}">${objetoTarefa.textoTarefa}</label>
+    NOVO_ELEMENTO_LI.innerHTML = `<label for="chk-${objetoTarefa.id}">${objetoTarefa.textoTarefa}</label>
+    <input type="checkbox" name="chk-${objetoTarefa.id}" id="chk-${objetoTarefa.id}" 
+    onclick="alterarStatusTarefa(${objetoTarefa.id})"
+    class="nao-concluida">
                                   <button onclick="excluirTarefa(${objetoTarefa.id})">&times;</button>`;      
     
     ELEMENTO_Ul.appendChild(NOVO_ELEMENTO_LI);
@@ -101,9 +101,9 @@ function carregarListaStorage(){
     
     //let classeStatus = listaSalva[itemListaSalva].concluido ? 'class="concluida"' : 'class="nao-concluida"';
     //Adicionar os elementos html na DOM    
-    NOVO_ELEMENTO_LI.innerHTML = `<input type="checkbox" name="chk-${listaSalva[itemListaSalva].id}" id="chk-${listaSalva[itemListaSalva].id}"
-                                         onclick="alterarStatusTarefa(${listaSalva[itemListaSalva].id})" class="${classeStatus}" ${checkboxMarcado}>
-                                  <label for="chk-${listaSalva[itemListaSalva].id}">${listaSalva[itemListaSalva].textoTarefa}</label>
+    NOVO_ELEMENTO_LI.innerHTML = `<label for="chk-${listaSalva[itemListaSalva].id}">${listaSalva[itemListaSalva].textoTarefa}</label>
+    <input type="checkbox" name="chk-${listaSalva[itemListaSalva].id}" id="chk-${listaSalva[itemListaSalva].id}"
+    onclick="alterarStatusTarefa(${listaSalva[itemListaSalva].id})" class="${classeStatus}" ${checkboxMarcado}>
                                   <button onclick="excluirTarefa(${listaSalva[itemListaSalva].id})">&times;</button>`;      
 
     ELEMENTO_Ul.appendChild(NOVO_ELEMENTO_LI);

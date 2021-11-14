@@ -6,11 +6,19 @@ let listaStorage = localStorage.getItem('storage-tarefas');
 
 function adcionarTarefa(){
   let valorInputTarefa = document.querySelector("#inputTarefa").value;
+  let ultimoId = undefined;
+  if(LISTA_TAREFAS.length == 0){
+    ultimoId = 0;
+  } else {
+    //pega o valor do id do ultimo elemento da lista
+    ultimoId = LISTA_TAREFAS[LISTA_TAREFAS.length-1].id; 
+  }
+  
   if (valorInputTarefa == "") {
     alert("Informe a descrição da tarefa para incluir!");
   } else {
     const objetoTarefa = {
-      id: LISTA_TAREFAS.length,
+      id: ++ultimoId, //incrementa o ultimo id da lista
       textoTarefa: valorInputTarefa,
       concluido: false,        
     };
@@ -50,18 +58,20 @@ function excluirTarefa(idTarefa) {
 
 function alterarStatusTarefa(idTarefa) {
   let indiceAlterarStatus = LISTA_TAREFAS.findIndex((item) => item.id == idTarefa);    
-  LISTA_TAREFAS[idTarefa].concluido = !(LISTA_TAREFAS[idTarefa].concluido);        
+  LISTA_TAREFAS[indiceAlterarStatus].concluido = !(LISTA_TAREFAS[indiceAlterarStatus].concluido);        
 
-  let elementoAlterarStatus = document.querySelector(`#chk-${indiceAlterarStatus}`);
-  elementoAlterarStatus.className = LISTA_TAREFAS[idTarefa].concluido ? 'concluida' : 'nao-concluida';  
+  let elementoAlterarStatus = document.querySelector(`#chk-${idTarefa}`);
+  elementoAlterarStatus.className = LISTA_TAREFAS[indiceAlterarStatus].concluido ? 'concluida' : 'nao-concluida';  
       
   gravarStorage();
 }
 
-function gravarStorage(){
+function gravarStorage(){  
   const listaJSON = JSON.stringify(LISTA_TAREFAS);
   // armazena do localStorage
   localStorage.setItem('storage-tarefas', listaJSON);
+  
+  atualizarContador();
 }
 
 if (listaStorage) {  
@@ -97,7 +107,21 @@ function carregarListaStorage(){
                                   <button onclick="excluirTarefa(${listaSalva[itemListaSalva].id})">&times;</button>`;      
 
     ELEMENTO_Ul.appendChild(NOVO_ELEMENTO_LI);
+    atualizarContador();
   }
+}
+
+function atualizarContador(){
+  let total = LISTA_TAREFAS.length;
+  let contConcluidas = 0;
+  for (let index = 0; index < LISTA_TAREFAS.length; index++) {
+    if(LISTA_TAREFAS[index].concluido){
+      contConcluidas++;
+    }
+  }
+
+  elementoTotais = document.querySelector('#totais').firstElementChild;  
+  elementoTotais.innerHTML = `Concluídas: ${contConcluidas}/${total}`;
 }
 
 document.querySelector("#btn-adicionar").addEventListener("click", adcionarTarefa);

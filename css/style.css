@@ -1,5 +1,205 @@
- * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+:root {
+  --cor-efeito: #ff5e00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  padding: 30px 40px 30px 40px;
+  color: #fff;
+  text-align: center;
+  display: block;
+  width: 100%;
+  
+  position: fixed;
+  top: 0;
+  background: linear-gradient(to right, #000000, #434343);
+}
+
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 2px;
+  margin-bottom: 15px;;
+}
+
+html, body {
+  background: linear-gradient(to right, #000000, #434343);
+  min-width: 328px;
+}
+
+#lista, #lista-tarefas {  
+  padding: 80px 40px 0 40px;
+  width: 100%;
+  text-align: center;
+}
+
+ul {
+  display: flexbox;
+  align-content: center;    
+  padding: 0 40px;
+}
+
+ul li {      
+  display: flex;  
+
+  padding: 5px;
+  color: #fff;
+  text-align: left;
+  width: 100%;  
+  height: 100%;
+  min-height: 28px;
+  border-bottom: 1px solid  var(--cor-efeito);  
+}
+
+input[type=checkbox] + label {
+  width: 95%;
+  float: right;
+  padding: 5px;
+}
+
+input[type=checkbox]:checked + label.concluida{
+  text-decoration: line-through;  
+  color: #02f584;
+}
+
+ul > li:hover {
+  background-color: #434343;
+}
+
+input[type="checkbox"], li>button{
+  position: relative;
+  display: inline;  
+  visibility: hidden;
+  float: right;
+  height: 30px;
+  width: 30px;
+}
+
+li:hover>button, li:hover>input[type="checkbox"]{  
+  visibility: visible; 
+  background: transparent;
+  border: 1px solid #fff;
+}
+
+li>button:hover {  
+  
+  cursor: pointer;  
+  background: transparent;
+  border: 1px solid var(--cor-efeito);
+  outline: none;
+  transition: .25s ease-in-out;
+}
+
+.tool-tip .tool-tip-text {
+  visibility: hidden;
+  width: 60px;
+  background-color: var(--cor-efeito);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 1em;
+  
+  position: absolute;
+  z-index: 1;
+  /* top: 100%; */
+  left: 50%;
+  margin-left: -75px;
+}
+
+.tool-tip:hover .tool-tip-text {
+  visibility: visible;
+}
+
+#totais>p {  
+  text-align: right;
+  padding: 15px 15px 0 0;
+  color: #fff;        
+}
+
+a {
+  color: var(--cor-efeito);
+}
+
+
+
+#inputTarefa {
+  width: 50vw;
+  height: 25px;
+  background-color: transparent;  
+  border: 1px solid var(--cor-efeito);  
+  font-size: 100%;  
+  padding: 0.2em;
+  color: #fff;
+}
+
+#inputTarefa:focus{  
+  background-color: #434343;
+  color: #fff;  
+  transition: 0.8s;
+}
+
+.btn-adicionar {
+  position: relative;  
+  width: 5em;
+  height: 25px;
+  background-color: transparent;  
+  border: 1px solid var(--cor-efeito);  
+  font-size: 100%;    
+  color: #f1f1f1;
+  
+
+  text-align: center;    
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-adicionar:hover {
+  background-color: #434343;  
+  transition: 0.8s;
+}
+
+.btn-adicionar:after {
+  content: "";
+  background: var(--cor-efeito);
+  display: block;
+  position: absolute;
+  
+  padding-top: 150%;
+  padding-left: 150%;  
+  margin-top: -120%;
+
+ 
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.btn-adicionar:active:after{
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+#conteudo {
+  position: relative;
+  min-height: 100vh;
+}
+
+footer {
+  position: absolute;  
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;        
+  padding: 15px;
+
+  justify-content: left;
+  color: #fff;
+}

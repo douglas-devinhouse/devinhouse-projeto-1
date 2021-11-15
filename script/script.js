@@ -28,16 +28,18 @@ function adcionarTarefa(){
     //Adicionar o objetoTarefa na DOM
     const NOVO_ELEMENTO_LI = document.createElement("li");
     //Criar uma propriedade "id" para cada novo item da lista (será o index da LISTA_TAREFAS)
-    NOVO_ELEMENTO_LI.id = `item-${objetoTarefa.id}`;
+    NOVO_ELEMENTO_LI.id = `item-${objetoTarefa.id}`;    
     //Adicionar os elementos html na DOM
-    NOVO_ELEMENTO_LI.innerHTML = `<label for="chk-${objetoTarefa.id}">${objetoTarefa.textoTarefa}</label>
-    <input type="checkbox" name="chk-${objetoTarefa.id}" id="chk-${objetoTarefa.id}" 
-    onclick="alterarStatusTarefa(${objetoTarefa.id})"
-    class="nao-concluida">
-                                  <button onclick="excluirTarefa(${objetoTarefa.id})">&times;</button>`;      
+    NOVO_ELEMENTO_LI.innerHTML = `<input type="checkbox" name="chk-${objetoTarefa.id}" id="chk-${objetoTarefa.id}" 
+                                  onclick="alterarStatusTarefa(${objetoTarefa.id})">
+                                  <label id="lbl-${objetoTarefa.id}" for="chk-${objetoTarefa.id}"  class="nao-concluida">${objetoTarefa.textoTarefa}</label>                                  
+                                  <button class onclick="excluirTarefa(${objetoTarefa.id})">
+                                  <div class="tool-tip"><img src="img/lixeira.png" alt="Remover tarefa da lista">
+                                  <span class="tool-tip-text">Excluir</span></div></button>`;
     
     ELEMENTO_Ul.appendChild(NOVO_ELEMENTO_LI);
     gravarStorage();
+    window.scrollBy(0,100);
 
     document.querySelector("#inputTarefa").value = "";
   }
@@ -60,7 +62,7 @@ function alterarStatusTarefa(idTarefa) {
   let indiceAlterarStatus = LISTA_TAREFAS.findIndex((item) => item.id == idTarefa);    
   LISTA_TAREFAS[indiceAlterarStatus].concluido = !(LISTA_TAREFAS[indiceAlterarStatus].concluido);        
 
-  let elementoAlterarStatus = document.querySelector(`#chk-${idTarefa}`);
+  let elementoAlterarStatus = document.querySelector(`#lbl-${idTarefa}`);
   elementoAlterarStatus.className = LISTA_TAREFAS[indiceAlterarStatus].concluido ? 'concluida' : 'nao-concluida';  
       
   gravarStorage();
@@ -98,14 +100,16 @@ function carregarListaStorage(){
       classeStatus = "nao-concluida";
       checkboxMarcado = "";
     }
-    
+        
     //let classeStatus = listaSalva[itemListaSalva].concluido ? 'class="concluida"' : 'class="nao-concluida"';
     //Adicionar os elementos html na DOM    
-    NOVO_ELEMENTO_LI.innerHTML = `<label for="chk-${listaSalva[itemListaSalva].id}">${listaSalva[itemListaSalva].textoTarefa}</label>
-    <input type="checkbox" name="chk-${listaSalva[itemListaSalva].id}" id="chk-${listaSalva[itemListaSalva].id}"
-    onclick="alterarStatusTarefa(${listaSalva[itemListaSalva].id})" class="${classeStatus}" ${checkboxMarcado}>
-                                  <button onclick="excluirTarefa(${listaSalva[itemListaSalva].id})">&times;</button>`;      
-
+    NOVO_ELEMENTO_LI.innerHTML = `<input type="checkbox" name="chk-${listaSalva[itemListaSalva].id}" id="chk-${listaSalva[itemListaSalva].id}"
+                                  onclick="alterarStatusTarefa(${listaSalva[itemListaSalva].id})" ${checkboxMarcado}>
+                                  <label id="lbl-${listaSalva[itemListaSalva].id}" for="chk-${listaSalva[itemListaSalva].id}" class="${classeStatus}">${listaSalva[itemListaSalva].textoTarefa}</label>                                                                    
+                                  <button onclick="excluirTarefa(${listaSalva[itemListaSalva].id})">
+                                  <div class="tool-tip"><img src="img/lixeira.png" alt="Remover tarefa da lista">
+                                  <span class="tool-tip-text">Excluir</span></div></button>`;      
+                                  
     ELEMENTO_Ul.appendChild(NOVO_ELEMENTO_LI);
     atualizarContador();
   }

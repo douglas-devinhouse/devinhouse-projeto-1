@@ -33,7 +33,7 @@ html, body {
 }
 
 #lista, #lista-tarefas {  
-  padding: 80px 40px 0 40px;
+  padding: 85px 40px 0 40px;
   width: 100%;
   text-align: center;
 }
@@ -84,6 +84,10 @@ li:hover>button, li:hover>input[type="checkbox"]{
   visibility: visible; 
   background: transparent;
   border: 1px solid #fff;
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;  
 }
 
 li>button:hover {  
